@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:test_app/widgets/drawer.dart";
 
 // ignore: camel_case_types
 class home_page extends StatelessWidget {
@@ -16,7 +17,7 @@ class home_page extends StatelessWidget {
           child: Text("Welcome To $name Repositories part $part"),
         ),
       ),
-      drawer: Drawer(),
+      drawer: MyDraw(),
     );
   }
 }
