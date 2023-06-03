@@ -10,6 +10,9 @@ class home_page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 16, 8, 243),
+        // elevation: 0.0,
+        // iconTheme: IconThemeData(color: Colors.orange),
         title: Text("Catalogue App"),
       ),
       body: Center(
