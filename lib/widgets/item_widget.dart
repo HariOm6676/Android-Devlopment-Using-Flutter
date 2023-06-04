@@ -14,13 +14,14 @@ class ItemWidget extends StatelessWidget {
           print("$item.name pressed");
         },
         contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
-        leading: Image.asset("assets/images/apple-iphone-12-r1.jpg"),
+        leading: Image.network(item.image),
         title: Text(item.name),
-        subtitle: Text("Apple iPhone 12th generation"),
+        subtitle: Text(item.desc),
         trailing: Text(
-          "₹" + item.price.toString(),
+          "\$${item.price}",
+          textScaleFactor: 1.5,
           style: TextStyle(
-            color: Colors.blue,
+            color: Colors.deepPurple,
             fontWeight: FontWeight.bold,
           ),
         ),
