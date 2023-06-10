@@ -1,9 +1,11 @@
+import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "dart:convert";
 import "package:test_app/models/catalogue.dart";
 import "package:test_app/widgets/drawer.dart";
 import "package:test_app/widgets/themes.dart";
+import "../utils/routes.dart";
 import "../widgets/item_widget.dart";
 import "package:velocity_x/velocity_x.dart";
 
@@ -110,6 +112,10 @@ class _home_pageState extends State<home_page> {
       // ),
       // drawer: MyDraw(),
       backgroundColor: Color.fromARGB(255, 205, 233, 244),
+      floatingActionButton: FloatingActionButton(onPressed: ()=> Navigator.pushNamed(context, MyRoutes.cartRoute),
+      backgroundColor: MyTheme.darkBlueishColor,
+      child: Icon(CupertinoIcons.cart),
+      ),
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
