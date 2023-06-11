@@ -20,7 +20,7 @@ class CatalogItem extends StatelessWidget {
           child: CatalogImage(image: catalog.image)),
           Expanded(
             child: Column(children: [
-              catalog.name.text.lg.color(MyTheme.darkBlueishColor).bold.make(),
+              catalog.name.text.lg.color(MyTheme.creamColor).bold.make(),
               catalog.desc.text.make(),
               ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +41,7 @@ class CatalogItem extends StatelessWidget {
           )
         ],
       ),
-    ).white.rounded.square(150).make().py16();
+    ).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
 

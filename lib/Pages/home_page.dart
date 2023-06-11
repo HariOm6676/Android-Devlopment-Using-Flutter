@@ -111,10 +111,11 @@ class _home_pageState extends State<home_page> {
       //         ),
       // ),
       // drawer: MyDraw(),
-      backgroundColor: Color.fromARGB(255, 205, 233, 244),
+      backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(onPressed: ()=> Navigator.pushNamed(context, MyRoutes.cartRoute),
       backgroundColor: MyTheme.darkBlueishColor,
-      child: Icon(CupertinoIcons.cart),
+      child: Icon(CupertinoIcons.cart,color:Colors.white,),
+      
       ),
       body: SafeArea(
         child: Container(
