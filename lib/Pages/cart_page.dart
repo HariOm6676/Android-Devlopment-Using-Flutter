@@ -7,11 +7,27 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: "Cart".text.make(),
       ),
-    );
+      body: Column(children: [children:[
+        placeholder().p32().expand(),
+              Divider(),
+              _CartTotal(),
+      ]],)
+      
+      );
+  }
+}
+class _CArtTotal
+ extends StatelessWidget {
+  const _CArtTotal
+  ({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox();
   }
 }
