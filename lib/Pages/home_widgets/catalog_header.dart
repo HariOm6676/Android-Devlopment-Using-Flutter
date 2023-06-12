@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
+
 class CatalogHeader extends StatelessWidget {
   const CatalogHeader({super.key});
 
@@ -8,7 +9,7 @@ class CatalogHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        "Catalog App".text.xl5.bold.color(MyTheme.creamColor).make(),
+        "Catalog App".text.xl5.bold.color(MyTheme.darkBlueishColor).make(),
         "Trending Products".text.xl2.make(),
       ],
     );

@@ -5,6 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../models/catalogue.dart';
 import '../../widgets/themes.dart';
 import '../catalog_image.dart';
+
 class CatalogItem extends StatelessWidget {
   final Item catalog;
 
@@ -15,29 +16,31 @@ class CatalogItem extends StatelessWidget {
     return VxBox(
       child: Row(
         children: [
-        Hero(
-          tag: Key(catalog.id.toString()),
-          child: CatalogImage(image: catalog.image)),
+          Hero(
+              tag: Key(catalog.id.toString()),
+              child: CatalogImage(image: catalog.image)),
           Expanded(
-            child: Column(children: [
-              catalog.name.text.lg.color(MyTheme.creamColor).bold.make(),
-              catalog.desc.text.make(),
-              ButtonBar(
-                alignment: MainAxisAlignment.spaceBetween,
-                buttonPadding: Vx.mH8,
-                children: [
-                  "\$${catalog.price}".text.bold.xl.make(),
-                  ElevatedButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBlueishColor),
-                        shape: MaterialStateProperty.all(StadiumBorder()),
-                      ),
-                      child: "Add To Cart".text.make()),
-                ],
-              )
-            ]),
+            child: SingleChildScrollView(
+              child: Column(children: [
+                catalog.name.text.uppercase.lg.black.extraBold.make(),
+                catalog.desc.text.make(),
+                ButtonBar(
+                  alignment: MainAxisAlignment.spaceBetween,
+                  buttonPadding: Vx.mH8,
+                  children: [
+                    "\$${catalog.price}".text.bold.xl.make(),
+                    ElevatedButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              MyTheme.darkBlueishColor),
+                          shape: MaterialStateProperty.all(StadiumBorder()),
+                        ),
+                        child: "Add To Cart".text.make()),
+                  ],
+                )
+              ]),
+            ),
           )
         ],
       ),
@@ -56,12 +59,15 @@ class CatalogList extends StatelessWidget {
       itemBuilder: (context, index) {
         final catalog = CatalogModel.getByPosition(index);
         return InkWell(
-          onTap:()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeDetailPage(
-            catalog:catalog,
-            ),
-            ),
-            ), 
-                   child: CatalogItem(catalog: catalog));
+            onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeDetailPage(
+                      catalog: catalog,
+                    ),
+                  ),
+                ),
+            child: CatalogItem(catalog: catalog));
       },
     );
   }
