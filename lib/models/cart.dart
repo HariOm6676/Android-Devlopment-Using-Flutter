@@ -14,12 +14,7 @@ _catalog=newcatalog;
   }
   List<Item> get item => _itemIds.map((id)=> _catalog.getById(id)).toList();
   num get totalPrice => item.fold(0, (previousValue, element) => previousValue+element.price);
-  void add(Item item){
-    _itemIds.add(item.id);
-  }
-  void remove(Item item){
-    _itemIds.remove(item.id);
-  }
+ 
 }
 class AddMutations extends VxMutation<MyStore>{
   final Item item;
@@ -30,6 +25,18 @@ class AddMutations extends VxMutation<MyStore>{
   perform() {
     // TODO: implement perform
    store?.cart._itemIds.add(item.id);
+  }
+
+}
+class RemoveMutations extends VxMutation<MyStore>{
+  final Item item;
+
+  RemoveMutations(this.item);
+
+  @override
+  perform() {
+    // TODO: implement perform
+   store?.cart._itemIds.remove(item.id);
   }
 
 }
