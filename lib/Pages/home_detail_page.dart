@@ -34,7 +34,9 @@ class HomeDetailPage extends StatelessWidget {
             //         ),
             //         child: "Add To Cart".text.make())
 
-                AddToCart(catalog: catalog,).wh(120, 50),
+            AddToCart(
+              catalog: catalog,
+            ).wh(120, 50),
           ],
         ).p32(),
       ),
@@ -42,35 +44,40 @@ class HomeDetailPage extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
+            // Padding(padding: EdgeInsets.all(10.0)),
             Hero(
               tag: Key(catalog.id.toString()),
               child: Image.network(catalog.image),
             ).h32(context),
             Expanded(
-                child: VxArc(
-              height: 30.0,
-              arcType: VxArcType.convey,
-              edge: VxEdge.top,
-              child: Container(
-                color: context.cardColor,
-                width: context.screenWidth,
-                child: Column(
-                  children: [
-                    catalog.name.text.xl4
-                        .color(MyTheme.darkBlueishColor)
-                        .bold
-                        .make(),
-                    catalog.desc.text.xl.make(),
-                    10.heightBox,
-                    "Sanctus voluptua et clita ut no sanctus amet dolore consetetur, gubergren stet eos eos sed no at amet lorem. At et lorem eos diam nonumy sit, clita nonumy rebum kasd sadipscing dolor. Vero magna et aliquyam accusam sed sanctus. Consetetur clita et stet sed. Est dolore sanctus sed duo. Et."
-                        .text
-                        .caption(context)
-                        .make()
-                        .p16(),
-                  ],
-                ).py64(),
-              ),
-            ))
+                child: SingleChildScrollView(
+                  child: VxArc(
+                    
+                              height: 30.0,
+                              arcType: VxArcType.convey,
+                              edge: VxEdge.top,
+                              child: Container(
+                  color: context.cardColor,
+                  width: context.screenWidth,
+                  child: Column(
+                    children: [
+                      // Padding(padding: EdgeInsets.only(bottom: 20)),
+                      catalog.name.text.xl4
+                          .color(MyTheme.darkBlueishColor)
+                          .bold
+                          .make(),
+                      catalog.desc.text.xl.make(),
+                      10.heightBox,
+                      "Sanctus voluptua et clita ut no sanctus amet dolore consetetur, gubergren stet eos eos sed no at amet lorem. At et lorem eos diam nonumy sit, clita nonumy rebum kasd sadipscing dolor. Vero magna et aliquyam accusam sed sanctus. Consetetur clita et stet sed. Est dolore sanctus sed duo. Et."
+                          .text
+                          .caption(context)
+                          .make()
+                          .p16(),
+                    ],
+                  ).py64(),
+                              ),
+                            ),
+                ))
           ],
         ),
       ),

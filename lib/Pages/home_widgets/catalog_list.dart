@@ -17,59 +17,81 @@ class CatalogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var children2 = [
+      Hero(
+          tag: Key(catalog.id.toString()),
+          child: CatalogImage(image: catalog.image)),
+      Expanded(
+        child: SingleChildScrollView(
+          child: Column(children: [
+            catalog.name.text.uppercase.lg.black.extraBold.make(),
+            catalog.desc.text.make(),
+            ButtonBar(
+              alignment: MainAxisAlignment.spaceBetween,
+              buttonPadding: Vx.mH8,
+              children: [
+                "\$${catalog.price}".text.bold.xl.make(),
+                AddToCart(catalog: catalog),
+              ],
+            )
+          ]),
+        ),
+      )
+    ];
     return VxBox(
-      child: Row(
-        children: [
-          Hero(
-              tag: Key(catalog.id.toString()),
-              child: CatalogImage(image: catalog.image)),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(children: [
-                catalog.name.text.uppercase.lg.black.extraBold.make(),
-                catalog.desc.text.make(),
-                ButtonBar(
-                  alignment: MainAxisAlignment.spaceBetween,
-                  buttonPadding: Vx.mH8,
-                  children: [
-                    "\$${catalog.price}".text.bold.xl.make(),
-                    AddToCart(catalog: catalog),
-                  ],
-                )
-              ]),
+      child: context.isMobile
+          ? Row(
+              children: children2,
+            )
+          : Column(
+              children: children2,
             ),
-          )
-        ],
-      ),
     ).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
-
-
-
-
 
 class CatalogList extends StatelessWidget {
   const CatalogList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: CatalogModel.items.length,
-      itemBuilder: (context, index) {
-        final catalog = CatalogModel.items[index];
-        return InkWell(
-            onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeDetailPage(
-                      catalog: catalog,
-                    ),
-                  ),
-                ),
-            child: CatalogItem(catalog: catalog));
-      },
-    );
+    return Vx.isWeb
+        ? GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, crossAxisSpacing: 20),
+            shrinkWrap: true,
+            itemCount: CatalogModel.items.length,
+            itemBuilder: (context, index) {
+              final catalog = CatalogModel.items[index];
+              return InkWell(
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeDetailPage(
+                            catalog: catalog,
+                          ),
+                        ),
+                      ),
+                  child: CatalogItem(catalog: catalog));
+            },
+          )
+        : ListView.builder(
+            // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            shrinkWrap: true,
+            itemCount: CatalogModel.items.length,
+            itemBuilder: (context, index) {
+              final catalog = CatalogModel.items[index];
+              return InkWell(
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeDetailPage(
+                            catalog: catalog,
+                          ),
+                        ),
+                      ),
+                  child: CatalogItem(catalog: catalog));
+            },
+          );
   }
 }

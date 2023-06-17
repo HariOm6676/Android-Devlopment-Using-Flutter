@@ -25,7 +25,7 @@ class _home_pageState extends State<home_page> {
   final int part = 1;
 
   final String name = "Hari Om Shukla";
-    // final url = "https://api.jsonbin.io/b/604dbddb683e7e079c4eefd3";
+  // final url = "https://api.jsonbin.io/b/604dbddb683e7e079c4eefd3";
   @override
   void initState() {
     // TODO: implement initState
@@ -34,11 +34,8 @@ class _home_pageState extends State<home_page> {
   }
 
   loadData() async {
-   
-
- 
     await Future.delayed(Duration(seconds: 2));
-     // for network data matlab network se data lena hai to
+    // for network data matlab network se data lena hai to
     //    final response = await http.get(Uri.parse(url));
     // final catalogJson = response.body;
     final catalogJson =
@@ -55,7 +52,7 @@ class _home_pageState extends State<home_page> {
 
   @override
   Widget build(BuildContext context) {
-    final _cart=(VxState.store as MyStore).cart;
+    final _cart = (VxState.store as MyStore).cart;
     // final dummyList = List.generate(20, (index) => CatalogModel.items[0]);
     return Scaffold(
       // appBar: AppBar(
@@ -121,16 +118,38 @@ class _home_pageState extends State<home_page> {
       //           child: CircularProgressIndicator(),
       //         ),
       // ),
-      drawer: MyDraw(),
+
       backgroundColor: context.canvasColor,
-      floatingActionButton: VxBuilder(
-        builder :(context, store, status) =>  FloatingActionButton(onPressed: ()=> Navigator.pushNamed(context, MyRoutes.cartRoute),
-        backgroundColor: MyTheme.darkBlueishColor,
-        child: Icon(CupertinoIcons.cart,color:Colors.white,),
-        
-        ).badge(color: Vx.gray200,size: 20,count: _cart.item.length,textStyle: TextStyle( color: Colors.black,fontWeight: FontWeight.bold)),
-        mutations: {AddMutations,RemoveMutations},
+      floatingActionButton: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Padding(padding: EdgeInsets.only(left: 30.0)),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, MyRoutes.drawer);
+            },
+            child: Icon(CupertinoIcons.briefcase),
+          ),
+          Expanded(child: Container()),
+          VxBuilder(
+            builder: (context, store, status) => FloatingActionButton(
+              onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+              backgroundColor: MyTheme.darkBlueishColor,
+              child: Icon(
+                CupertinoIcons.cart,
+                color: Colors.white,
+              ),
+            ).badge(
+                color: Vx.gray200,
+                size: 20,
+                count: _cart.item.length,
+                textStyle: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold)),
+            mutations: {AddMutations, RemoveMutations},
+          ),
+        ],
       ),
+
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
@@ -141,7 +160,7 @@ class _home_pageState extends State<home_page> {
               if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                 CatalogList().p16().expand()
               else
-                 CircularProgressIndicator().centered().expand(),
+                CircularProgressIndicator().centered().expand(),
             ],
           ),
         ),
@@ -149,11 +168,3 @@ class _home_pageState extends State<home_page> {
     );
   }
 }
-
-
-
-
-
-
-
-
