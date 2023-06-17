@@ -110,7 +110,7 @@ class _home_pageState extends State<home_page> {
       //           child: CircularProgressIndicator(),
       //         ),
       // ),
-      // drawer: MyDraw(),
+      drawer: MyDraw(),
       backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(onPressed: ()=> Navigator.pushNamed(context, MyRoutes.cartRoute),
       backgroundColor: MyTheme.darkBlueishColor,

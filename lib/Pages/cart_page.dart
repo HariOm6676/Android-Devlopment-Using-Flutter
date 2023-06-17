@@ -3,6 +3,8 @@ import 'package:test_app/models/cart.dart';
 import 'package:test_app/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../core/store.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
@@ -25,7 +27,7 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartTotal extends StatelessWidget {
-  final _cart = CartModel();
+  final CartModel _cart=(VxState.store as MyStore).cart;
   // const _CartTotal({super.key});
 
   @override
@@ -60,7 +62,7 @@ class _CartTotal extends StatelessWidget {
 class _CartList extends StatelessWidget{
 
 // class __CartListState extends State<_CartList> {
-  final _cart = CartModel();
+  final CartModel _cart=(VxState.store as MyStore).cart;
   @override
   Widget build(BuildContext context) {
     return _cart.item.isEmpty
