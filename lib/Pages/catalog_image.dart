@@ -18,6 +18,6 @@ class CatalogImage extends StatelessWidget {
         .make()
         .w40(context);
   }
-    // );
+  // );
   // }
 }
